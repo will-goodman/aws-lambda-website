@@ -1,2 +1,4 @@
 /deploy/provider.tf
 /deploy/backend.tf
+/deploy/.terraform
+/deploy/plan
