@@ -72,11 +72,52 @@ variable "ui_lambda_runtime" {
 }
 
 variable "ui_lambda_filename" {
-  description = "Path to the zip file containing the lambda code."
+  description = "Path to the zip file containing the UI lambda code."
   default = "../test.zip"
 }
 
 variable "ui_lambda_sg_name" {
   description = "Name for the security group assigned to the UI lambda."
   default = "awswebsite-ui-sg"
+}
+
+//API
+variable "api_lambda_function_name" {
+  description = "Name of the API lambda function with the ending dropped e.g. test.py -> test"
+  default = "test_api"
+}
+
+variable "api_lambda_handler" {
+  description = "Path to the lambda handler for the API e.g. /path/file.lambda_handler"
+  default = "test_api.lambda_handler"
+}
+
+variable "api_lambda_logs_retention" {
+  description = "How long to store the API lambda logs in days."
+  default = 7
+}
+
+variable "api_lambda_memory_size" {
+  description = "Memory to allocate to the API lambda in MB. Default 128MB."
+  default = 128
+}
+
+variable "api_lambda_timeout" {
+  description = "Timeout in seconds for the API lambda. Default 3 seconds."
+  default = 3
+}
+
+variable "api_lambda_runtime" {
+  description = "Runtime environment for the API lambda."
+  default = "python3.7"
+}
+
+variable "api_lambda_filename" {
+  description = "Path to the zip file containing the API lambda code."
+  default = "../test_api.zip"
+}
+
+variable "api_lambda_sg_name" {
+  description = "Name for the security group assigned to the API lambda."
+  default = "awswebsite-api-sg"
 }

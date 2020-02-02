@@ -64,3 +64,56 @@ resource "aws_security_group" "ui" {
     cidr_blocks     = ["0.0.0.0/0"]
   }
 }
+
+module "api" {
+  source = "github.com/will-goodman/aws-terraform-modules//vpc_lambda"
+
+  function_name = var.api_lambda_function_name
+  lambda_handler = var.api_lambda_handler
+  logs_retention_period = var.api_lambda_logs_retention
+
+  memory_size = var.api_lambda_memory_size
+  timeout = var.api_lambda_timeout
+  runtime = var.api_lambda_runtime
+
+  filename = var.api_lambda_filename
+
+  subnet_ids = module.vpc.private_subnets
+  security_groups = [aws_security_group.api.id]
+}
+
+resource "aws_security_group" "api" {
+  name        = var.api_lambda_sg_name
+  description = "Allow HTTP/S connection."
+  vpc_id      = module.vpc.vpc_id
+
+  #HTTP
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = [var.public_cidr_range, var.second_public_cidr_range]
+  }
+
+  egress {
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+
+  # HTTPS
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [var.public_cidr_range, var.second_public_cidr_range]
+  }
+
+  egress {
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+}
