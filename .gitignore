@@ -2,3 +2,4 @@
 /deploy/backend.tf
 /deploy/.terraform
 /deploy/plan
+package.zip
