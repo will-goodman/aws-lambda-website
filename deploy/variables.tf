@@ -15,11 +15,6 @@ variable "vpc_cidr" {
   default = "10.0.0.0/16"
 }
 
-variable "subnet_availability_zone" {
-  description = "AWS availability zone for the subnets."
-  default = "euw2-az1"
-}
-
 variable "public_cidr_range" {
   description = "CIDR range for the first public subnet. Must be within the VPC CIDR range."
   default = "10.0.1.0/24"
@@ -120,4 +115,25 @@ variable "api_lambda_filename" {
 variable "api_lambda_sg_name" {
   description = "Name for the security group assigned to the API lambda."
   default = "awswebsite-api-sg"
+}
+
+//ALB
+variable "alb_name" {
+  description = "Name to give to the ALB."
+  default = "awswebsite-alb"
+}
+
+variable "alb_sg_name" {
+  description = "Name for the security group assigned to the ALB."
+  default = "awswebsite-alb-sg"
+}
+
+variable "alb_ui_target_group_name" {
+  description = "Name for the ALB target group which forwards to the UI lambda function."
+  default = "awswebsite-ui-tg"
+}
+
+variable "alb_api_target_group_name" {
+  description = "Name for the ALB target group which forwards to the API lambda function."
+  default = "awswebsite-api-tg"
 }
