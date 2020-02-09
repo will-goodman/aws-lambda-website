@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install --target=./api -r api/requirements.txt
+          pip install --target=api -r api/requirements.txt
         working-directory: ./src
       - name: Test with pytest
         run: |
@@ -24,7 +24,7 @@ jobs:
           pytest
         working-directory: ./src/api
       - name: Zip package
-        run: zip -r ../api.zip ./api
+        run: zip -r ../api.zip api
         working-directory: ./src
       - name: Upload api folder zip
         uses: actions/upload-artifact@v1
