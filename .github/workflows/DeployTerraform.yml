@@ -8,9 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Change Directory
-          run: cd deploy
-
       - name: Install Terraform
           env:
             TERRAFORM_VERSION: "0.12.20"
@@ -22,21 +19,26 @@ jobs:
 
       - name: Verify Terraform version
           run: terraform --version
+          working-directory: ./deploy
 
       - name: Terraform init
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: terraform init -input=false
+        run: terraform init
+        working-directory: ./deploy
 
       - name: Terraform validation
         run: terraform validate
+        working-directory: ./deploy
 
       - name: Terraform plan
         run: terraform plan -out=plan
+        working-directory: ./deploy
 
       - name: Terraform apply
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: terraform apply -auto-approve "plan"
+        working-directory: ./deploy
