@@ -109,7 +109,7 @@ variable "api_lambda_runtime" {
 
 variable "api_lambda_filename" {
   description = "Path to the zip file containing the API lambda code."
-  default = "api.zip"
+  default = "../api.zip"
 }
 
 variable "api_lambda_sg_name" {
