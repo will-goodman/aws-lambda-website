@@ -4,7 +4,7 @@ import awsgi
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/api/status')
 def index():
     return jsonify(status=200, message='OK')
 
