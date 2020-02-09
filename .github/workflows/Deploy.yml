@@ -75,9 +75,9 @@ jobs:
           name: api
 
       - name: Download UI deployment package
-          uses: actions/download-artifact@v1
-          with:
-            name: ui
+        uses: actions/download-artifact@v1
+        with:
+          name: ui
 
       - name: Install Terraform
         env:
