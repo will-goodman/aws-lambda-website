@@ -20,7 +20,9 @@ jobs:
           pip install --target=api -r ./api/requirements.txt
         working-directory: ./src
       - name: Test with pytest
-        run: python setup.py test
+        run: |
+          pip install pytest
+          pytest
         working-directory: ./src/api
       - name: Zip package
         run: zip -r ../api.zip api
