@@ -7,8 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+
       - name: Change Directory
           run: cd deploy
+
       - name: Install Terraform
           env:
             TERRAFORM_VERSION: "0.12.20"
