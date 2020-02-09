@@ -25,8 +25,8 @@ jobs:
           pytest
         working-directory: ./src/api
       - name: Zip package
-        run: zip -r ../api.zip api
-        working-directory: ./src
+        run: zip -r ../../api.zip *
+        working-directory: ./src/api
       - name: Upload api folder zip
         uses: actions/upload-artifact@v1
         with:
@@ -55,8 +55,8 @@ jobs:
           pytest
         working-directory: ./src/ui
       - name: Zip package
-        run: zip -r ../ui.zip ui
-        working-directory: ./src
+        run: zip -r ../../ui.zip *
+        working-directory: ./src/ui
       - name: Upload ui folder zip
         uses: actions/upload-artifact@v1
         with:

@@ -43,7 +43,7 @@ variable "ui_lambda_function_name" {
 
 variable "ui_lambda_handler" {
   description = "Path to the lambda handler for the UI e.g. /path/file.lambda_handler"
-  default = "ui/awswebsiteui/ui.lambda_handler"
+  default = "awswebsiteui/ui.lambda_handler"
 }
 
 variable "ui_lambda_logs_retention" {
@@ -84,7 +84,7 @@ variable "api_lambda_function_name" {
 
 variable "api_lambda_handler" {
   description = "Path to the lambda handler for the API e.g. /path/file.lambda_handler"
-  default = "api/awswebsiteapi/api.lambda_handler"
+  default = "awswebsiteapi/api.lambda_handler"
 }
 
 variable "api_lambda_logs_retention" {
