@@ -79,12 +79,12 @@ variable "ui_lambda_sg_name" {
 //API
 variable "api_lambda_function_name" {
   description = "Name of the API lambda function with the ending dropped e.g. test.py -> test"
-  default = "test_api"
+  default = "api"
 }
 
 variable "api_lambda_handler" {
   description = "Path to the lambda handler for the API e.g. /path/file.lambda_handler"
-  default = "test_api.lambda_handler"
+  default = "awswebsiteapi/api.lambda_handler"
 }
 
 variable "api_lambda_logs_retention" {
@@ -109,7 +109,7 @@ variable "api_lambda_runtime" {
 
 variable "api_lambda_filename" {
   description = "Path to the zip file containing the API lambda code."
-  default = "../test_api.zip"
+  default = "api.zip"
 }
 
 variable "api_lambda_sg_name" {
