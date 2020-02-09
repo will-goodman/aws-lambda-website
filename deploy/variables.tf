@@ -38,12 +38,12 @@ variable "second_private_cidr_range" {
 //UI
 variable "ui_lambda_function_name" {
   description = "Name of the UI lambda function with the ending dropped e.g. test.py -> test"
-  default = "test"
+  default = "ui"
 }
 
 variable "ui_lambda_handler" {
   description = "Path to the lambda handler for the UI e.g. /path/file.lambda_handler"
-  default = "test.lambda_handler"
+  default = "awswebsiteui/ui.lambda_handler"
 }
 
 variable "ui_lambda_logs_retention" {
@@ -68,7 +68,7 @@ variable "ui_lambda_runtime" {
 
 variable "ui_lambda_filename" {
   description = "Path to the zip file containing the UI lambda code."
-  default = "../test.zip"
+  default = "../ui/ui.zip"
 }
 
 variable "ui_lambda_sg_name" {

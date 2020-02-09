@@ -33,8 +33,38 @@ jobs:
           name: api
           path: api.zip
 
+  package-ui:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --target=ui -r ./ui/requirements.txt
+        working-directory: ./src
+      - name: Test with pytest
+        run: |
+          pip install pytest
+          pytest
+        working-directory: ./src/ui
+      - name: Zip package
+        run: zip -r ../ui.zip ui
+        working-directory: ./src
+      - name: Upload ui folder zip
+        uses: actions/upload-artifact@v1
+        with:
+          name: ui
+          path: ui.zip
+
   terraform-deploy:
-    needs: package-api
+    needs: [package-api, package-ui]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -43,6 +73,11 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: api
+
+      - name: Download UI deployment package
+          uses: actions/download-artifact@v1
+          with:
+            name: ui
 
       - name: Install Terraform
         env:
