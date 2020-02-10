@@ -1,10 +1,11 @@
 
 module "vpc" {
-  source = "github.com/will-goodman/aws-terraform-modules//vpc"
+  source = "github.com/will-goodman/aws-terraform-modules//vpc?ref=wg_availability_zones"
 
   vpc_name = var.vpc_name
 
   vpc_cidr = var.vpc_cidr
+  availability_zones = var.availability_zones
   public_cidr_range = var.public_cidr_range
   second_public_cidr_range = var.second_public_cidr_range
   private_cidr_range = var.private_cidr_range

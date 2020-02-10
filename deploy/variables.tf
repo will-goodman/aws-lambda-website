@@ -15,6 +15,12 @@ variable "vpc_cidr" {
   default = "10.0.0.0/16"
 }
 
+variable "availability_zones" {
+  description = "Availability zones to deploy the subnets to. Must be at least two."
+  type = list(string)
+  default = ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
+}
+
 variable "public_cidr_range" {
   description = "CIDR range for the first public subnet. Must be within the VPC CIDR range."
   default = "10.0.1.0/24"
