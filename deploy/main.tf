@@ -1,6 +1,6 @@
 
 module "vpc" {
-  source = "github.com/will-goodman/aws-terraform-modules//vpc?ref=wg_availability_zones"
+  source = "github.com/will-goodman/aws-terraform-modules//vpc"
 
   vpc_name = var.vpc_name
 
