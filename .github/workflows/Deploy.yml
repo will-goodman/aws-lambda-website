@@ -71,3 +71,7 @@ jobs:
 
       - name: Deploy to AWS
         uses: will-goodman/actions/terraform@wg_terraform
+        with:
+          access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_access_key_id: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          default_region: ${{ secrets.AWS_DEFAULT_REGION }}
