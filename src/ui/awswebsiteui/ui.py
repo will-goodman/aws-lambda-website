@@ -9,7 +9,7 @@ def status():
     return jsonify(status=200, message='OK')
 
 
-@app.route('/')
+@app.route('/index')
 def index():
     return app.send_static_file('./aws-lambda-website/index.html')
 
