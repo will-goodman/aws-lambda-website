@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, send_from_directory
+from alb_response import alb_response
 import awsgi
 
 app = Flask(__name__)
@@ -20,4 +21,8 @@ def dist(path):
 
 
 def lambda_handler(event, context):
-    return awsgi.response(app, event, context, base64_content_types={"image/png"})
+    response = awsgi.response(app, event, context, base64_content_types={"image/png"})
+
+    print(response)
+
+    return response
