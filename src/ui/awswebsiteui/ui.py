@@ -13,7 +13,7 @@ def status():
 @app.route('/index')
 def index():
     print("index")
-    return app.send_static_file('./aws-lambda-website/index.html')
+    return send_from_directory('./aws-lambda-website', 'index.html')
 
 
 @app.route('/dist/<path:path>')
