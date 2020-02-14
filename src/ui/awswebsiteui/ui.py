@@ -5,8 +5,13 @@ app = Flask(__name__)
 
 
 @app.route('/status')
-def index():
+def status():
     return jsonify(status=200, message='OK')
+
+
+@app.route('/index')
+def index():
+    return app.send_static_file('./aws-lambda-website/index.html')
 
 
 def lambda_handler(event, context):
