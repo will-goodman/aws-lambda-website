@@ -50,7 +50,9 @@ jobs:
           pip install --target=ui -r ./ui/requirements.txt
         working-directory: ./src
       - name: Build VueJS
-        run: npm run build
+        run: |
+          npm install
+          npm run build
         working-directory: ./src/ui/awswebsiteui/aws-lambda-website
       - name: Test with pytest
         run: |
