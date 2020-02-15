@@ -134,7 +134,7 @@ resource "aws_lb_listener_rule" "api_https" {
 
 // Remove in prod and provide a proper signed certificate
 module "self_signed_cert" {
-  source = "github.com/will-goodman/aws-terraform-modules//self_signed_cert?ref=wg_certificate"
+  source = "github.com/will-goodman/aws-terraform-modules//self_signed_cert"
 
   key_algorithm = "RSA"
 
