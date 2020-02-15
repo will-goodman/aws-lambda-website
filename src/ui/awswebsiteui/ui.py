@@ -1,7 +1,12 @@
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory, redirect
 import awsgi
 
 app = Flask(__name__)
+
+
+@app.route('/')
+def root():
+    return redirect("/index", code=302)
 
 
 @app.route('/status')
