@@ -4,14 +4,14 @@ import awsgi
 app = Flask(__name__)
 
 
-@app.route('/')
-def root():
-    return redirect("/index.html", code=302)
-
-
 @app.route('/status')
 def status():
     return jsonify(status=200, message='OK')
+
+
+@app.route('/')
+def root():
+    return redirect("/index.html", code=302)
 
 
 @app.route('/index.html')
