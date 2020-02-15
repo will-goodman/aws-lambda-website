@@ -104,24 +104,31 @@ jobs:
         run: terraform init
         working-directory: ./deploy
 
-      - name: Terraform validation
-        env:
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-        run: terraform validate
-        working-directory: ./deploy
-
-      - name: Terraform plan
+      - name: Terraform destroy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-        run: terraform plan -out=plan
-        working-directory: ./deploy
-
-      - name: Terraform apply
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-        run: terraform apply -auto-approve "plan"
-        working-directory: ./deploy
+          run: terraform destroy --auto-approve
+          working-directory: ./deploy
+#
+#      - name: Terraform validation
+#        env:
+#          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+#        run: terraform validate
+#        working-directory: ./deploy
+#
+#      - name: Terraform plan
+#        env:
+#          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+#        run: terraform plan -out=plan
+#        working-directory: ./deploy
+#
+#      - name: Terraform apply
+#        env:
+#          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+#        run: terraform apply -auto-approve "plan"
+#        working-directory: ./deploy
