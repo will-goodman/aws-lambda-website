@@ -106,26 +106,45 @@ resource "aws_lb_listener_rule" "api_http" {
   }
 }
 
-//resource "aws_lb_listener" "https" {
-//  load_balancer_arn = module.alb.alb_arn
-//  port              = "443"
-//  protocol          = "HTTPS"
-//
-//  default_action {
-//    type             = "forward"
-//    target_group_arn = aws_lb_target_group.ui_target_group.arn
-//  }
-//}
-//
-//resource "aws_lb_listener_rule" "api_https" {
-//  listener_arn = aws_lb_listener.https.arn
-//  action {
-//    type = "forward"
-//    target_group_arn = aws_lb_target_group.api_target_group.arn
-//  }
-//  condition {
-//    path_pattern {
-//      values = ["/api/*"]
-//    }
-//  }
-//}
+resource "aws_lb_listener" "https" {
+  load_balancer_arn = aws_lb.alb.arn
+  port              = "443"
+  protocol          = "HTTPS"
+
+  certificate_arn = module.self_signed_cert.arn // Update in prod
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.ui_target_group.arn
+  }
+}
+
+resource "aws_lb_listener_rule" "api_https" {
+  listener_arn = aws_lb_listener.https.arn
+  action {
+    type = "forward"
+    target_group_arn = aws_lb_target_group.api_target_group.arn
+  }
+  condition {
+    path_pattern {
+      values = ["/api/*"]
+    }
+  }
+}
+
+// Remove in prod and provide a proper signed certificate
+module "self_signed_cert" {
+  source = "github.com/will-goodman/aws-terraform-modules//self_signed_cert?ref=wg_certificate"
+
+  key_algorithm = "RSA"
+
+  common_name = aws_lb.alb.dns_name
+
+  validity_hours = 12
+
+  allowed_uses = [
+    "key_encipherment",
+    "digital_signature",
+    "server_auth",
+  ]
+}
