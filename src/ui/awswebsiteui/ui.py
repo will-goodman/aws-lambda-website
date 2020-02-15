@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    return redirect("/index", code=302)
+    return redirect("/index.html", code=302)
 
 
 @app.route('/status')
