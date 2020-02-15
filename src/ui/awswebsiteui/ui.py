@@ -14,7 +14,7 @@ def status():
     return jsonify(status=200, message='OK')
 
 
-@app.route('/index')
+@app.route('/index.html')
 def index():
     return send_from_directory('./aws-lambda-website', 'index.html')
 
