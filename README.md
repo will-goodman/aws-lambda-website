@@ -28,7 +28,11 @@ The VueJS which renders the website is contained within the UI deployment packag
     - AWS_ACCESS_KEY_ID
     - AWS_SECRET_ACCESS_KEY
     - AWS_DEFAULT_REGION
-- Every-time you push to master, the GitHub actions will deploy to your AWS environment  
+- Every-time you push to master, the GitHub actions will deploy to your AWS environment
+
+<b>IF USING IN PRODUCTION:</b><br>
+Switch the self-signed certificate for the HTTPS listener for your own signed certificate.  
+Make the change in: deploy/alb/main.tf
 
 ## Limitations
 - As everything is stored in the Lambda, it must not exceed the Lambda storage/memory limits found here:
