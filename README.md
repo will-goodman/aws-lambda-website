@@ -1,7 +1,7 @@
 # aws-lambda-website
 Deploy a serverless website in AWS Lambda, without having to store assets in S3.
 
-![Architecture]("../assets/lambda-website.png")
+![Architecture](../assets/lambda-website.png)
 
 ## Usage
 - Use this template to make a new repository
